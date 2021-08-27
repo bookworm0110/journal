@@ -19,6 +19,55 @@
     </ul>
   </nav>
   <h1>Edit</h1>
+  <form action="{{url_for('update')}}" method="POST">
+    <input type="hidden" id="id" name="id" value="{{jnl.id}}" />
+    <div class="row">
+      <div class="col-2">
+        <label>Author</label>
+      </div>
+      <div class="col-10">
+        <input type='text' name='author' value="{{jnl.author}}" />
+      </div>
+    </div><br>
+    <div class="row">
+      <div class="col-2">
+        <label>Emotion</label>
+      </div>
+      <div class="col-10">
+        <input type='text' name='emotion' value="{{jnl.emotion}}" />
+      </div>
+    </div><br>
+    <div class="row">
+      <div class="col-2">
+        <label>Weather</label>
+      </div>
+      <div class="col-10">
+        <input type='text' name='weather' value="{{jnl.weather}}" />
+      </div>
+    </div><br>
+    <div class="row">
+      <div class="col-2">
+        <label>Content</label>
+      </div>
+      <div class="col-10">
+        <input type='text' name='content' value="{{jnl.content}}" />
+      </div>
+    </div><br>
+    <div class="row">
+      <div class="col-2">
+        <label>Creation Date</label>
+      </div>
+      <div class="col-10">
+        <input type='text' name='date' value="{{jnl.date}}" />
+      </div>
+    </div><br>
+    <div class="row">
+      <div class="col-12">
+        <button type="submit">Submit changes</button>
+      </div>
+    </div>
+
+  </form>
 </body>
 
 </html>

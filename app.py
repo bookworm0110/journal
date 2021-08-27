@@ -42,10 +42,43 @@ def view():
     return render_template("view.html", jnllist=jnllist)
 
 
+@app.route("/update", methods=["POST"])
+def update():
+    _id = request.form.get("id")
+    authorform = request.form.get("author")
+    emotionform = request.form.get("emotion")
+    weatherform = request.form.get("weather")
+    contentform = request.form.get("content")
+    dateform = request.form.get("date")
+    # person=People("",nameform,emailform,phoneform,fbform,instform,twform,dcform)
+    person = People(
+        _id, nameform, emailform, phoneform, fbform, instform, twform, dcform
+    )
+
+    conn = pgconn()
+    cur = conn.cursor()
+    cur.execute(
+        "UPDATE entrys SET emotion=?,weather=?,content=?,date=? WHERE id=?",
+        (
+            person.name,
+            person.email,
+            person.phone,
+            person.facebook,
+            person.instagram,
+            person.twitter,
+            person.discord,
+            person.id,
+        ),
+    )
+    connection.commit()
+
+    return redirect("/list")
+
+
 @app.route("/edit/<int:id>")
-def edit():
-    connection = create(dbf)
-    cur = connection.cursor()
+def edit(id):
+    conn = pgconn()
+    cur = conn.cursor()
     cur.execute(
         "select e.id,u.name as author,e.emotion,e.weather,e.content,e.date from entrys as e, users as u where e.authorid=u.id",
         (str(id),),
@@ -59,8 +92,8 @@ def edit():
 
 @app.route("/delete/<int:id>")
 def delete(id):
-    connection = create(dbf)
-    cur = connection.cursor()
+    conn = pgconn()
+    cur = conn.cursor()
     cur.execute("DELETE from journals WHERE id=?", (str(id),))
     connection.commit()
     return redirect("/list")
