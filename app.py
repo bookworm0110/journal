@@ -40,6 +40,30 @@ def view():
     return render_template("view.html", jnllist=jnllist)
 
 
+@app.route('/update', methods=['POST'])
+def update():
+    _id = request.form.get("id")
+    nameform = request.form.get('name')
+    emailform = request.form.get('email')
+    phoneform = request.form.get('phone')
+    fbform = request.form.get('fb')
+    instform = request.form.get('inst')
+    twform = request.form.get('tw')
+    dcform = request.form.get('dc')
+    print(nameform+' '+emailform+' '+phoneform+' ' +
+          fbform+' '+instform+' '+twform+' '+dcform)
+    # person=People("",nameform,emailform,phoneform,fbform,instform,twform,dcform)
+    person = People(_id, nameform, emailform, phoneform,
+                    fbform, instform, twform, dcform)
+
+    connection = create(dbf)
+    cur = connection.cursor()
+    cur.execute('UPDATE people SET name=?,email = ?,phone = ?,facebook=?,twitter=?,instagram=?,discord=? WHERE id=?',
+                (person.name, person.email, person.phone, person.facebook, person.instagram, person.twitter, person.discord, person.id))
+    connection.commit()
+    return redirect("/view")
+
+
 @app.route('/edit/<int:id>')
 def edit():
     connection = create(dbf)
