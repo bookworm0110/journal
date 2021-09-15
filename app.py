@@ -1,34 +1,36 @@
-# hi
 from jrnl import Journals
 import psycopg2
 from postgresdb import pgconn
 from flask import Flask, render_template, redirect, request
+
 app = Flask(__name__)
 dbf = r"/Users/plasma/Documents/Code/docs/journal.db"
 
 
-@app.route('/')
+@app.route("/")
 def home():
     conn = pgconn()
     cur = conn.cursor()
     cur.execute(
-        "select e.id,u.name as author,e.emotion,e.weather,e.content,e.date from entrys as e, users as u where e.authorid=u.id")
+        "select e.id,u.name as author,e.emotion,e.weather,e.content,e.date from entrys as e, users as u where e.authorid=u.id"
+    )
     rows = cur.fetchall()
     print(rows)
     return render_template("home.html")
 
 
-@app.route('/create')
+@app.route("/create")
 def create():
     return render_template("create.html")
 
 
-@app.route('/view')
+@app.route("/view")
 def view():
     conn = pgconn()
     cur = conn.cursor()
     cur.execute(
-        "select e.id,u.name as author,e.emotion,e.weather,e.content,e.date from entrys as e, users as u where e.authorid=u.id")
+        "select e.id,u.name as author,e.emotion,e.weather,e.content,e.date from entrys as e, users as u where e.authorid=u.id"
+    )
     rows = cur.fetchall()
     print(rows)
     jnllist = []
@@ -76,10 +78,10 @@ def edit():
     return render_template("edit.html", jnl=jnl)
 
 
-@app.route('/delete/<int:id>')
+@app.route("/delete/<int:id>")
 def delete(id):
-    connection = create(dbf)
-    cur = connection.cursor()
-    cur.execute('DELETE from journals WHERE id=?', (str(id),))
+    conn = pgconn()
+    cur = conn.cursor()
+    cur.execute("DELETE from journals WHERE id=?", (str(id),))
     connection.commit()
-    return redirect('/list')
+    return redirect("/list")
