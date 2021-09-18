@@ -8,4 +8,4 @@ class Journals:
         self.date = date
 
     def __str__(self):
-        return "Author:{},Emotion:{},Weather:{},Content:{},Date:{}".format(self.author, self.emotion, self, weather, self.content, self.date)
+        return "Author:{},Emotion:{},Weather:{},Content:{},Date:{}".format(self.author, self.emotion, self.weather, self.content, self.date)

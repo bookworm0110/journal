@@ -14,7 +14,6 @@
     <ul class="navbar-nav">
       <li class="nav-item"><a class="nav-link" href="/">Home</a></li>
       <li class="nav-item"><a class="nav-link" href="view">View</a></li>
-      <li class="nav-item"><a class="nav-link" href="edit">Edit</a></li>
       <li class="nav-item"><a class="nav-link" href="create">Create</a></li>
     </ul>
   </nav>
@@ -26,60 +25,44 @@
       <input type="hidden" id="id" name="id" value="{{jnl.id}}" />
       <div class="row">
         <div class="col-2">
-          <label>Name</label>
+          <label>Author</label>
         </div>
         <div class="col-10">
-          <textarea name='name' value="{{person.name}}">
+          <input type="text" name='author' disabled value="{{jnl.author}}">
         </div>
       </div><br>
       <div class="row">
         <div class="col-2">
-          <label>Email</label>
+          <label>Emotion</label>
         </div>
         <div class="col-10">
-          <textarea name='email' value="{{person.email}}">
+          <input type="text" name='emotion' value="{{jnl.emotion}}">
         </div>
       </div><br>
       <div class="row">
         <div class="col-2">
-          <label>Phone</label>
+          <label>Weather</label>
         </div>
         <div class="col-10">
-          <textarea name='phone' value="{{person.phone}}">
+          <input type="text" name='weather' disabled value="{{jnl.weather}}">
         </div>
       </div><br>
       <div class="row">
         <div class="col-2">
-          <label>Facebook</label>
+          <label>Content</label>
         </div>
         <div class="col-10">
-          <textarea name='fb' value="{{person.facebook}}">
+          <textarea name='content' rows="10">{{jnl.content}}</textarea>
         </div>
       </div><br>
       <div class="row">
         <div class="col-2">
-          <label>Instagram</label>
+          <label>Date</label>
         </div>
         <div class="col-10">
-          <textarea name='inst' value="{{person.instagram}}">
+          <input type='text' name='date' disabled value="{{jnl.date}}">
         </div>
       </div><br>
-      <div class="row">
-        <div class="col-2">
-          <label>Twitter</label>
-        </div>
-        <div class="col-10">
-          <textarea name='tw' value="{{person.twitter}}">
-        </div>
-      </div><br>
-      <div class="row">
-        <div class="col-2">
-          <label>Discord</label>
-        </div>
-        <div class="col-10">
-          <textarea name='dc' value="{{person.discord}}">
-        </div>
-      </div>
       <div class="row">
         <div class="col-12">
           <button type="submit">Submit changes</button>
