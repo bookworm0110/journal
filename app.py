@@ -25,18 +25,17 @@ def create():
 
 @app.route("/make",methods=["POST"])
 def make():
-    _id = request.form.get("id")
-    author =request.form.get("author")
     emotion = request.form.get("emotion")
+    author=1
     weather=request.form.get("weather")
     content = request.form.get("content")
     date=request.form.get("date")
     conn = pgconn()
     cur = conn.cursor()
-    cur.execute('INSERT INTO entrys (author,emotion,weather,content,date)VALUES(%s,%s,%s,%s,%s)',(author,emotion,weather,content,date))
+    cur.execute('INSERT INTO entrys (authorid,emotion,weather,content,date)VALUES(%s,%s,%s,%s,%s)',(author,emotion,weather,content,date))
     # Problem: Author is seperate table
-    connection.commit()
-    return redirect("view.html")
+    conn.commit()
+    return redirect("/view")
 
 
 @app.route("/view")
@@ -86,6 +85,6 @@ def edit(id):
 def delete(id):
     conn = pgconn()
     cur = conn.cursor()
-    cur.execute("DELETE from journals WHERE id=?", (str(id),))
-    connection.commit()
-    return redirect("/list")
+    cur.execute("DELETE from entrys WHERE id=%s", (str(id),))
+    conn.commit()
+    return redirect("/view")
