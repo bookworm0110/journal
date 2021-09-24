@@ -25,6 +25,17 @@ def create():
 
 @app.route("/make",methods=["POST"])
 def make():
+    _id = request.form.get("id")
+    author =request.form.get("author")
+    emotion = request.form.get("emotion")
+    weather=request.form.get("weather")
+    content = request.form.get("content")
+    date=request.form.get("date")
+    conn = pgconn()
+    cur = conn.cursor()
+    cur.execute('INSERT INTO entrys (author,emotion,weather,content,date)VALUES(%s,%s,%s,%s,%s)',(author,emotion,weather,content,date))
+    # Problem: Author is seperate table
+    connection.commit()
     return redirect("view.html")
 
 
@@ -34,6 +45,7 @@ def view():
     cur = conn.cursor()
     cur.execute(
         "select e.id,u.name as author,e.emotion,e.weather,e.content,e.date from entrys as e, users as u where e.authorid=u.id"
+
     )
     rows = cur.fetchall()
     print(rows)
