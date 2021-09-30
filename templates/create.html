@@ -51,7 +51,7 @@
           <label>Content</label>
         </div>
         <div class="col-10">
-          <textarea name='content' rows="10"></textarea>
+          <textarea name='content' id='content' rows="10" onblur="val_length()"></textarea>
         </div>
       </div><br>
       <div class="row">
@@ -70,6 +70,14 @@
 
     </form>
   </div>
+  <script>
+    function val_length(){
+      var content=document.getElementById("content").value;
+      if (content.trim().length < 10) {
+          alert('ERROR!Content too short ERROR!');
+        }
+      }
+  </script>
 </body>
 
 </html>

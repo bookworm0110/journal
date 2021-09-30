@@ -42,10 +42,7 @@ def make():
 def view():
     conn = pgconn()
     cur = conn.cursor()
-    cur.execute(
-        "select e.id,u.name as author,e.emotion,e.weather,e.content,e.date from entrys as e, users as u where e.authorid=u.id"
-
-    )
+    cur.execute("select e.id,u.name as author,e.emotion,e.weather,e.content,e.date from entrys as e, users as u where e.authorid=u.id")
     rows = cur.fetchall()
     print(rows)
     jnllist = []
