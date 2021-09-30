@@ -85,3 +85,14 @@ def delete(id):
     cur.execute("DELETE from entrys WHERE id=%s", (str(id),))
     conn.commit()
     return redirect("/view")
+    
+@app.route("/details/<int:id>")
+def details(id):
+    conn = pgconn()
+    cur = conn.cursor()
+    cur.execute('select e.id,u.name as author,e.emotion,e.weather,e.content,e.date from entrys as e, users as u where e.authorid=u.id', (str(id),))
+    row = cur.fetchone()
+    print(row)
+    jnl = Journals(row[0], row[1], row[2], row[3], row[4], row[5])
+    print(jnl)
+    return render_template("details.html", jnl=jnl)

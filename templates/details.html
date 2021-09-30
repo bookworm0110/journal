@@ -1,12 +1,14 @@
 <!DOCTYPE html>
 <html lang="EN">
+
 <head>
-  <title>Journal-Create entry</title>
+  <title>Journal-Edit entry</title>
   <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css">
   <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
   <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.16.0/umd/popper.min.js"></script>
   <script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.5.2/js/bootstrap.min.js"></script>
 </head>
+
 <body>
   <nav class="navbar navbar-expand bg-light">
     <ul class="navbar-nav">
@@ -15,17 +17,18 @@
       <li class="nav-item"><a class="nav-link" href="/create">Create</a></li>
     </ul>
   </nav>
-  <h1>Create</h1>
+  <h1>Edit</h1>
   <div class="container">
     <nav class="navbar navbar-expand bg-light">
     </nav>
-    <form action="{{url_for('make')}}" method="POST">
+    <form action="{{url_for('update')}}" method="POST">
+      <input type="hidden" id="id" name="id" disabled value="{{jnl.id}}" />
       <div class="row">
         <div class="col-2">
           <label>Author</label>
         </div>
         <div class="col-10">
-          <input type="text" name='author' >
+          <input type="text" name='author' disabled value="{{jnl.author}}">
         </div>
       </div><br>
       <div class="row">
@@ -33,7 +36,7 @@
           <label>Emotion</label>
         </div>
         <div class="col-10">
-          <input type="text" name='emotion' >
+          <input type="text" name='emotion'  disabled value="{{jnl.emotion}}">
         </div>
       </div><br>
       <div class="row">
@@ -41,7 +44,7 @@
           <label>Weather</label>
         </div>
         <div class="col-10">
-          <input type="text" name='weather' >
+          <input type="text" name='weather' disabled value="{{jnl.weather}}">
         </div>
       </div><br>
       <div class="row">
@@ -49,7 +52,7 @@
           <label>Content</label>
         </div>
         <div class="col-10">
-          <textarea name='content' id='content' rows="10" onfocusout="val_length()"></textarea>
+          <textarea name='content' disabled rows="10">{{jnl.content}}</textarea>
         </div>
       </div><br>
       <div class="row">
@@ -57,22 +60,17 @@
           <label>Date</label>
         </div>
         <div class="col-10">
-          <input type='text' name='date' >
+          <input type='text' name='date' disabled value="{{jnl.date}}">
         </div>
       </div><br>
       <div class="row">
         <div class="col-12">
-          <button type="submit">Submit changes</button>
+          <button disabled type="submit">Submit changes</button>
         </div>
       </div>
+
     </form>
   </div>
-  <script>
-    function val_length(){
-      var content=document.getElementById("content").value;
-      if (content.trim().length < 10) {
-        alert('Content too short');
-        }}
-  </script>
 </body>
+
 </html>

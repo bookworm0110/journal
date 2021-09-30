@@ -3,7 +3,7 @@
 
 
 <head>
-  <title></title>
+  <title>Journal-List</title>
   <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css">
   <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
   <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.16.0/umd/popper.min.js"></script>
@@ -14,8 +14,8 @@
   <nav class="navbar navbar-expand bg-light">
     <ul class="navbar-nav">
       <li class="nav-item"><a class="nav-link" href="/">Home</a></li>
-      <li class="nav-item"><a class="nav-link" href="view">View</a></li>
-      <li class="nav-item"><a class="nav-link" href="create">Create</a></li>
+      <li class="nav-item"><a class="nav-link" href="/view">View</a></li>
+      <li class="nav-item"><a class="nav-link" href="/create">Create</a></li>
     </ul>
   </nav>
   <h1>View Journals</h1>
@@ -26,7 +26,8 @@
         <th>Emotion</th>
         <th>Weather</th>
         <th>Content</th>
-        <th>Date</th>
+        <th>Creation Date</th>
+        <th>Options</th>
       </tr>
     </thead>
     <tbody>
@@ -37,7 +38,7 @@
         <td>{{i.weather}}</td>
         <td>{{i.content}}</td>
         <td>{{i.date}}</td>
-        <td><a class="btn btn-sm" role="button" href=""></a>Details</td>
+        <td><a class="btn btn-sm" role="button" href="/details/{{i.id}}"></a>Details</td>
         <td><a class="btn btn-sm" role="button" href="/edit/{{i.id}}">Edit</a></td>
         <td><a class="btn btn-sm" role="button" href="/delete/{{i.id}}">Delete</a></td>
       </tr>
