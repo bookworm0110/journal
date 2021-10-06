@@ -2,6 +2,8 @@ from jrnl import Journals
 import psycopg2
 from postgresdb import pgconn
 from flask import Flask, render_template, redirect, request
+import requests
+import json
 
 app = Flask(__name__)
 dbf = r"/Users/plasma/Documents/Code/docs/journal.db"
@@ -96,3 +98,12 @@ def details(id):
     jnl = Journals(row[0], row[1], row[2], row[3], row[4], row[5])
     print(jnl)
     return render_template("details.html", jnl=jnl)
+@app.route("/weather")
+def weatherapi():
+    key="06e3e0e2fe69d7f0caecadafc58c1a86"
+    url = 'https://api.openweathermap.org/data/2.5/weather?q=Coquitlam' + '&units=metric' + '&appid=' + key
+    response=requests.get(url)
+    print(response.text)
+    data=json.loads(response.text)
+    print(data)
+    return data["weather"][0]

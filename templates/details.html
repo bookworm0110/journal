@@ -21,14 +21,12 @@
   <div class="container">
     <nav class="navbar navbar-expand bg-light">
     </nav>
-    <form action="{{url_for('update')}}" method="POST">
-      <input type="hidden" id="id" name="id" disabled value="{{jnl.id}}" />
       <div class="row">
         <div class="col-2">
           <label>Author</label>
         </div>
         <div class="col-10">
-          <input type="text" name='author' disabled value="{{jnl.author}}">
+          <label>{{jnl.author}}</label>
         </div>
       </div><br>
       <div class="row">
@@ -36,7 +34,7 @@
           <label>Emotion</label>
         </div>
         <div class="col-10">
-          <input type="text" name='emotion'  disabled value="{{jnl.emotion}}">
+          <label value="{{jnl.emotion}}">
         </div>
       </div><br>
       <div class="row">
@@ -44,7 +42,7 @@
           <label>Weather</label>
         </div>
         <div class="col-10">
-          <input type="text" name='weather' disabled value="{{jnl.weather}}">
+          <label value="{{jnl.weather}}"></label>
         </div>
       </div><br>
       <div class="row">
@@ -52,7 +50,7 @@
           <label>Content</label>
         </div>
         <div class="col-10">
-          <textarea name='content' disabled rows="10">{{jnl.content}}</textarea>
+          <label value="{{jnl.content}}"></label>
         </div>
       </div><br>
       <div class="row">
@@ -60,16 +58,9 @@
           <label>Date</label>
         </div>
         <div class="col-10">
-          <input type='text' name='date' disabled value="{{jnl.date}}">
+          <label value="{{jnl.date}}"></label>
         </div>
       </div><br>
-      <div class="row">
-        <div class="col-12">
-          <button disabled type="submit">Submit changes</button>
-        </div>
-      </div>
-
-    </form>
   </div>
 </body>
 

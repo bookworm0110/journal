@@ -57,7 +57,7 @@
           <label>Date</label>
         </div>
         <div class="col-10">
-          <input type='text' name='date' >
+          <input type='text' name='date' placeholder="YYYY-MM-DD" value="" >
         </div>
       </div><br>
       <div class="row">
@@ -68,11 +68,17 @@
     </form>
   </div>
   <script>
+    var date= new Date();
+    var day=date.getDate()
+    var year=date.getFullYear()
+    var month=date.getMonth()+1
+    console.log(year+'-'+month+'-'+day);
     function val_length(){
       var content=document.getElementById("content").value;
       if (content.trim().length < 10) {
         alert('Content too short');
         }}
+    
   </script>
 </body>
 </html>
