@@ -4,7 +4,7 @@ from postgresdb import pgconn
 from flask import Flask, render_template, redirect, request
 import requests
 import json
-
+import time
 app = Flask(__name__)
 dbf = r"/Users/plasma/Documents/Code/docs/journal.db"
 
@@ -23,7 +23,13 @@ def home():
 
 @app.route("/create")
 def create():
-    return render_template("create.html")
+    day=time.strftime("%Y-%m-%d")
+    key="06e3e0e2fe69d7f0caecadafc58c1a86"
+    url = 'https://api.openweathermap.org/data/2.5/weather?q=Coquitlam' + '&units=metric' + '&appid=' + key
+    response=requests.get(url)
+    data=json.loads(response.text)
+    print(data)
+    return render_template("create.html",day=day,weather=data["weather"][0]["main"], temperature=data["main"]["temp"])
 
 @app.route("/make",methods=["POST"])
 def make():
@@ -106,4 +112,4 @@ def weatherapi():
     print(response.text)
     data=json.loads(response.text)
     print(data)
-    return data["weather"][0]
+    return data["weather"][0]["description"]

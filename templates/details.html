@@ -17,7 +17,8 @@
       <li class="nav-item"><a class="nav-link" href="/create">Create</a></li>
     </ul>
   </nav>
-  <h1>Edit</h1>
+  <h1>Viewing Entry</h1>
+  <td><a class="btn btn-sm" role="button" href="/edit/{{jnl.id}}">Edit Entry</a></td>
   <div class="container">
     <nav class="navbar navbar-expand bg-light">
     </nav>
@@ -34,7 +35,7 @@
           <label>Emotion</label>
         </div>
         <div class="col-10">
-          <label value="{{jnl.emotion}}">
+          <label>{{jnl.emotion}}</label>
         </div>
       </div><br>
       <div class="row">
@@ -42,7 +43,7 @@
           <label>Weather</label>
         </div>
         <div class="col-10">
-          <label value="{{jnl.weather}}"></label>
+          <label>{{jnl.weather}}</label>
         </div>
       </div><br>
       <div class="row">
@@ -50,7 +51,7 @@
           <label>Content</label>
         </div>
         <div class="col-10">
-          <label value="{{jnl.content}}"></label>
+          <label>{{jnl.content}}</label>
         </div>
       </div><br>
       <div class="row">
@@ -58,7 +59,7 @@
           <label>Date</label>
         </div>
         <div class="col-10">
-          <label value="{{jnl.date}}"></label>
+          <label>{{jnl.date}}</label>
         </div>
       </div><br>
   </div>
