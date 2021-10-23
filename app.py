@@ -9,6 +9,27 @@ app = Flask(__name__)
 dbf = r"/Users/plasma/Documents/Code/docs/journal.db"
 
 
+@app.route("/signup")
+def signupview():
+    return render_template("signup.html")
+
+
+@app.route("/signup",methods=["POST"])
+def signup():
+    return redirect("/login")
+
+@app.route("/login")
+def loginview():
+    return render_template("login.html")
+
+@app.route("/login",methods=["POST"])
+def login():
+    return redirect("/")
+
+@app.route("/profile")
+def profile():
+    return render_template("profile.html")
+
 @app.route("/")
 def home():
     conn = pgconn()
