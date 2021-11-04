@@ -12,6 +12,9 @@ dbf = r"/Users/plasma/Documents/Code/docs/journal.db"
 @app.route("/signup")
 def signupview():
     return render_template("signup.html")
+@app.route("/logout")
+def logout():
+    return redirect("/")
 
 
 @app.route("/signup",methods=["POST"])
