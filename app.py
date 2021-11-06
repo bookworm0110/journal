@@ -7,7 +7,24 @@ import json
 import time
 app = Flask(__name__)
 dbf = r"/Users/plasma/Documents/Code/docs/journal.db"
-
+from user import User
+# @app.route("/test")
+def findUserByEmail():
+    try:
+        email="people@email.net"
+        conn = pgconn()
+        cur = conn.cursor()
+        cur.execute("select * from users where email=%s",(email,))
+        row=cur.fetchone()
+        print(row)
+        if row is None:
+            return None
+        else:
+            usr=User(row[0], row[1], row[2], row[3])
+            print(usr)
+            return usr
+    except Exception as e:
+        print(e)
 
 @app.route("/signup")
 def signupview():

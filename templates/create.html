@@ -1,14 +1,14 @@
 {%extends "base.html"%}
 {%block content%}
-<h1>Create</h1>
   <div class="container">
+    <div class="col-12"><h1>Create New</h1></div>
     <form action="{{url_for('make')}}" method="POST">
       <div class="row">
         <div class="col-2">
           <label>Author</label>
         </div>
         <div class="col-10">
-          <input type="text" name='author' >
+          <input type="text" name='author' placeholder="enter author here"class="form-control">
         </div>
       </div><br>
       <div class="row">
@@ -16,7 +16,7 @@
           <label>Emotion</label>
         </div>
         <div class="col-10">
-          <select name="emotion"><option value="Happy">Happy</option><option value="Sad">Sad</option></select>
+          <select name="emotion"class="form-control"><option value="Happy">Happy</option><option value="Sad">Sad</option></select>
         </div>
       </div><br>
       <div class="row">
@@ -24,7 +24,7 @@
           <label>Weather</label>
         </div>
         <div class="col-10">
-          <input type="text" name='weather' value="{{weather}}({{temperature}} ˚C)">
+          <input type="text" name='weather' value="{{weather}}({{temperature}} ˚C)"class="form-control">
         </div>
       </div><br>
       <div class="row">
@@ -32,7 +32,7 @@
           <label>Content</label>
         </div>
         <div class="col-10">
-          <textarea name='content' id='content' rows="10" placeholder="Write content here." onfocusout="val_length()"></textarea>
+          <textarea name='content' id='content' rows="10" placeholder="Write content here." onfocusout="val_length()"class="form-control"></textarea>
         </div>
       </div><br>
       <div class="row">
@@ -40,12 +40,12 @@
           <label>Date</label>
         </div>
         <div class="col-10">
-          <input type='text' name='date' placeholder="YYYY-MM-DD" value="{{day}}" >
+          <input type='text' name='date' placeholder="YYYY-MM-DD format please" value="{{day}}" class="form-control">
         </div>
       </div><br>
       <div class="row">
         <div class="col-12">
-          <button type="submit">Submit changes</button>
+          <button type="submit" class="btn btn-primary">Submit changes</button>
         </div>
       </div>
     </form>
