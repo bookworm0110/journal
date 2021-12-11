@@ -78,6 +78,7 @@ def loginview():
 
 @app.route("/login",methods=["POST"])
 def login():
+    
     email=request.form.get("email")
     pw=request.form.get("password")
     user=findUserByEmail(email)
@@ -85,7 +86,8 @@ def login():
         flash("Unable to login. Please check information and try again.")
         return redirect("/login")
     else:
-        login_user(user)
+        login_user(user, remember=False)
+        print(user)
 
     #find user with said email
     #if password is wrong:
@@ -94,16 +96,17 @@ def login():
     #set local/session variable to user
         return redirect("/profile")
 @login_manager.user_loader
-def load_user(email):
+def load_user(user_id):
     
-    user=findUserByEmail(email)
-    
+    user=findUserByEmail(user_id)
+
+    print(user)
     return user
 
 
 @app.route("/profile")
 def profile():
-    return render_template("profile.html")
+    return render_template("profile.html", name=current_user.name)
 
 @app.route("/")
 def home():
