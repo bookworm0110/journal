@@ -2,15 +2,18 @@
 {%block content%}
   <h1>Log In</h1>
   <div class="container">
-    <nav class="navbar navbar-expand bg-light">
-    </nav>
+    {%with messages=get_flashed_messages()%}
+    {%if messages%}
+    <div class="alert alert-danger">{{messages[0]}}</div>
+    {%endif%}
+    {%endwith%}
     <form action="/login" method="POST">
       <div class="row">
         <div class="col-2">
           <label>Email</label>
         </div>
         <div class="col-10">
-          <input type="text" name='email' >
+          <input class="formcontrol" type="text" name='email' >
         </div>
       </div><br>
       <div class="row">
@@ -18,7 +21,7 @@
           <label>Password</label>
         </div>
         <div class="col-10">
-          <input type='password' name='password'>
+          <input class="formcontrol" type='password' name='password'>
         </div>
       </div><br>
       <div class="row">

@@ -1,17 +1,27 @@
+import email
+from gettext import find
 from jrnl import Journals
 import psycopg2
 from postgresdb import pgconn
-from flask import Flask, render_template, redirect, request
+from flask import Flask, render_template, redirect, request, flash
 import requests
 import json
 import time
+from werkzeug.security import generate_password_hash, check_password_hash
+from flask_login import LoginManager,login_user, login_required, logout_user, current_user
+
 app = Flask(__name__)
+app.config["SECRET_KEY"]="top-secret"    
+
+login_manager=LoginManager()
+login_manager.init_app(app)
+
 dbf = r"/Users/plasma/Documents/Code/docs/journal.db"
 from user import User
 # @app.route("/test")
-def findUserByEmail():
+def findUserByEmail(email):
     try:
-        email="people@email.net"
+        # email="people@email.net"
         conn = pgconn()
         cur = conn.cursor()
         cur.execute("select * from users where email=%s",(email,))
@@ -31,12 +41,36 @@ def signupview():
     return render_template("signup.html")
 @app.route("/logout")
 def logout():
+    logout_user()
     return redirect("/")
 
 
 @app.route("/signup",methods=["POST"])
 def signup():
-    return redirect("/login")
+    name = request.form.get("name")
+    email=request.form.get("email")
+    pw=request.form.get("password")
+    print(name+email+pw)
+
+    user= findUserByEmail(email)
+    if user is not None:
+        flash("email is already registered! Meant to login? Go here: ")
+
+        return redirect("/signup")
+    else: 
+        conn = pgconn()
+        cur = conn.cursor()
+        cur.execute('INSERT INTO users (name,email,password)VALUES(%s,%s,%s)',(name, email, generate_password_hash(pw,method="sha256")))
+        conn.commit()
+        # Directions:
+        # parse form element-DONE
+        # check if email does not already exist in data
+        # if true:
+        # redirect back to signup page with alert
+        # else:
+        # add data to table
+        # redirect to login
+        return redirect("/login")
 
 @app.route("/login")
 def loginview():
@@ -44,7 +78,28 @@ def loginview():
 
 @app.route("/login",methods=["POST"])
 def login():
-    return redirect("/")
+    email=request.form.get("email")
+    pw=request.form.get("password")
+    user=findUserByEmail(email)
+    if not user or check_password_hash(user.password, pw) == False:
+        flash("Unable to login. Please check information and try again.")
+        return redirect("/login")
+    else:
+        login_user(user)
+
+    #find user with said email
+    #if password is wrong:
+    #redirect to login with another alert
+    #else:
+    #set local/session variable to user
+        return redirect("/profile")
+@login_manager.user_loader
+def load_user(email):
+    
+    user=findUserByEmail(email)
+    
+    return user
+
 
 @app.route("/profile")
 def profile():
