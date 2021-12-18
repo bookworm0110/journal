@@ -105,6 +105,7 @@ def load_user(user_id):
 
 
 @app.route("/profile")
+@login_required
 def profile():
     return render_template("profile.html", name=current_user.name)
 
@@ -133,7 +134,7 @@ def create():
 @app.route("/make",methods=["POST"])
 def make():
     emotion = request.form.get("emotion")
-    author=1
+    author=current_user.id
     weather=request.form.get("weather")
     content = request.form.get("content")
     date=request.form.get("date")
