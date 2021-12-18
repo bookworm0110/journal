@@ -30,8 +30,8 @@ def findUserByEmail(email):
         if row is None:
             return None
         else:
-            usr=User(row[0], row[1], row[2], row[3])
-            print(usr)
+            usr=User(row[0], row[2], row[1], row[3])
+            print('finduserbyemail',usr)
             return usr
     except Exception as e:
         print(e)
@@ -87,7 +87,7 @@ def login():
         return redirect("/login")
     else:
         login_user(user, remember=False)
-        print(user)
+        print("loginfunction", user)
 
     #find user with said email
     #if password is wrong:
@@ -100,7 +100,7 @@ def load_user(user_id):
     
     user=findUserByEmail(user_id)
 
-    print(user)
+    print('loginuser',user)
     return user
 
 
