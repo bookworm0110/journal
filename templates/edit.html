@@ -11,7 +11,7 @@
           <label>Author</label>
         </div>
         <div class="col-10">
-          <input type="text" name='author' disabled value="{{jnl.author}}">
+          <input type="text" name='author' class="form-control" disabled value="{{jnl.author}}">
         </div>
       </div><br>
       <div class="row">
@@ -19,7 +19,7 @@
           <label>Emotion</label>
         </div>
         <div class="col-10">
-          <input type="text" name='emotion' value="{{jnl.emotion}}">
+          <select name="emotion"class="form-control"><option value="-">Select...</option><option value="Happy">Happy</option><option value="Sad">Sad</option><option value="Angry">Angry</option><option value="Depressed">Depressed</option><option value="Tired">Tired</option></select>
         </div>
       </div><br>
       <div class="row">
@@ -27,7 +27,7 @@
           <label>Weather</label>
         </div>
         <div class="col-10">
-          <input type="text" name='weather' disabled value="{{jnl.weather}}">
+          <input type="text" name='weather' class="form-control" disabled value="{{jnl.weather}}">
         </div>
       </div><br>
       <div class="row">
@@ -35,7 +35,7 @@
           <label>Content</label>
         </div>
         <div class="col-10">
-          <textarea name='content' rows="10">{{jnl.content}}</textarea>
+          <textarea name='content' rows="10" class="form-control">{{jnl.content}}</textarea>
         </div>
       </div><br>
       <div class="row">
@@ -43,12 +43,12 @@
           <label>Date</label>
         </div>
         <div class="col-10">
-          <input type='text' name='date' disabled value="{{jnl.date}}">
+          <input type='text' name='date' class="form-control" disabled value="{{jnl.date}}">
         </div>
       </div><br>
       <div class="row">
         <div class="col-12">
-          <button type="submit">Submit changes</button>
+          <button type="submit" class="btn btn-secondary" >Submit changes</button>
         </div>
       </div>
 
