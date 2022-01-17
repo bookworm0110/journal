@@ -2,8 +2,6 @@
 {%block content%}
   <h1>Edit</h1>
   <div class="container">
-    <nav class="navbar navbar-expand bg-light">
-    </nav>
     <form action="{{url_for('update')}}" method="POST">
       <input type="hidden" id="id" name="id" value="{{jnl.id}}" />
       <div class="row">
@@ -44,6 +42,15 @@
         </div>
         <div class="col-10">
           <input type='text' name='date' class="form-control" disabled value="{{jnl.date}}">
+        </div>
+      </div><br>
+      </div><br>
+      <div class="row">
+        <div class="col-2">
+          <label>Private</label>
+        </div>
+        <div class="col-10">
+          <switch name='private' class="form-control" value="{{jnl.private}}">
         </div>
       </div><br>
       <div class="row">
