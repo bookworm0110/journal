@@ -24,7 +24,7 @@
           <label>Content</label>
         </div>
         <div class="col-10">
-          <textarea name='content' id='content' rows="10" placeholder="Write content here." onfocusout="val_length()"class="form-control"></textarea>
+          <div id="editor" name="content" class="form-control" rows="10"></div>
         </div>
       </div><br>
       <div class="row">
@@ -45,7 +45,7 @@
       </div><br>
       <div class="row">
         <div class="col-12">
-          <button type="submit" class="btn btn-secondary">Submit changes</button>
+          <button type="submit" class="btn btn-secondary"onfocusin="validate_length()">Submit changes</button>
         </div>
       </div>
     </form>
@@ -56,11 +56,13 @@
     var year=date.getFullYear()
     var month=date.getMonth()+1
     console.log(year+'-'+month+'-'+day);
-    function val_length(){
+    function validate_length(){
       var content=document.getElementById("content").value;
       if (content.trim().length < 10) {
         alert('Content too short');
         }}
-    
+    var quill = new Quill('#editor', {
+      theme: 'snow'
+    });
   </script>
   {%endblock%}

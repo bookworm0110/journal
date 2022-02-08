@@ -1,7 +1,9 @@
 {%extends "base.html"%}
 {%block content%}
-  <h1>Edit</h1>
   <div class="container">
+    <div class="col-10">
+    <h1>Edit</h1>
+    </div>
     <form action="{{url_for('update')}}" method="POST">
       <input type="hidden" id="id" name="id" value="{{jnl.id}}" />
       <div class="row">
@@ -33,7 +35,7 @@
           <label>Content</label>
         </div>
         <div class="col-10">
-          <textarea name='content' rows="10" class="form-control">{{jnl.content}}</textarea>
+          <textarea id="editor" name="content" class="form-control" rows="10"><p>{{jnl.content}}</p></textarea>
         </div>
       </div><br>
       <div class="row">
@@ -44,13 +46,13 @@
           <input type='text' name='date' class="form-control" disabled value="{{jnl.date}}">
         </div>
       </div><br>
-      </div><br>
+      
       <div class="row">
         <div class="col-2">
           <label>Private</label>
         </div>
         <div class="col-10">
-          <switch name='private' class="form-control" value="{{jnl.private}}">
+          <input type="checkbox" name="private" class="form-control" {%if jnl.private%} checked {%endif%}>
         </div>
       </div><br>
       <div class="row">
@@ -58,6 +60,7 @@
           <button type="submit" class="btn btn-secondary" >Submit changes</button>
         </div>
       </div>
+    </div><br>
 
     </form>
   </div>
@@ -67,5 +70,8 @@
       if (content.trim().length < 10) {
         alert('Content too short');
         }}
+    var quill = new Quill('#editor', {
+      theme: 'snow'
+    });
   </script>
 {%endblock%}

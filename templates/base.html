@@ -4,6 +4,8 @@
 
 <head>
   <title>Journal</title>
+  <link href="https://cdn.quilljs.com/1.3.6/quill.snow.css" rel="stylesheet">
+  <script src="https://cdn.quilljs.com/1.3.6/quill.js"></script>
   <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css">
   <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
   <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.16.0/umd/popper.min.js"></script>
@@ -24,10 +26,12 @@
       <li class="nav-item"><a class="nav-link" href="/signup">Sign Up</a></li>
       <li class="nav-item"><a class="nav-link" href="/login">Log In</a></li>
       {%endif%}
+      {%if current_user.is_admin%}
+      <li class="nav-item"><a class="nav-link" href="/admin">Admin Control Panel</a></li>
+      {%endif%}
     </ul>
-  </nav>
+  </nav>                                                                                
   {%block content%}
   {%endblock%}
 </body>
-
 </html>

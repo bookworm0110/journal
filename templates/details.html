@@ -1,10 +1,8 @@
 {%extends "base.html"%}
 {%block content%}
   <h1>Viewing Entry</h1>
-  <td><a class="btn btn-sm" role="button" href="/edit/{{jnl.id}}">Edit Entry</a></td>
+  {%if current_user.name==jnl.author%}<td><a class="btn btn-primary" role="button" href="/edit/{{jnl.id}}">Edit Entry</a></td>{%endif%}
   <div class="container">
-    <nav class="navbar navbar-expand bg-light">
-    </nav>
       <div class="row">
         <div class="col-2">
           <label>Author</label>
@@ -45,5 +43,19 @@
           <label>{{jnl.date}}</label>
         </div>
       </div><br>
+    <h1>Comments</h1>
+    <form action="{{url_for('addcomment')}}" method="POST">
+      <input type="hidden" id="journalid" name="journalid" value="{{jnl.id}}">
+      <div class="row">
+        <div class="col-12">
+          <textarea rows="10" class="formcontrol" placeholder="Add a comment" id="content" name="content"></textarea>
+          </div>
+      </div><br>
+      <div class="row">
+        <div class="col-12">
+          <button type="submit" class="btn btn-secondary">Add Comment</button>
+        </div>
+      </div>
+    </form>
   </div>
 {%endblock%}

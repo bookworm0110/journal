@@ -1,14 +1,7 @@
 {%extends "base.html"%}
 {%block content%}
-  <h1>View Journals</h1>
-  <ul class="nav nav-tabs">
-    <li class="nav-item">
-      <a class="nav-link active" aria-current="page" href="/view">Public</a>
-    </li>
-    <li class="nav-item">
-      <a class="nav-link" href="/myjournals">Your Journals</a>
-    </li>
-  </ul>
+
+  <h1>Admin Panel</h1>
   <table class="table">
     <thead>
       <tr>
@@ -29,8 +22,10 @@
         <td>{{i.content}}</td>
         <td>{{i.date}}</td>
         <td><a class="btn btn-sm" role="button" href="/details/{{i.id}}">Details</a></td>
+        <td><a class="btn btn-sm" role="button" href="/edit/{{i.id}}">Edit</a></td>
+        <td><a class="btn btn-sm" role="button" href="/delete/{{i.id}}">Delete</a></td>
       </tr>
       {%endfor%}
     </tbody>
-</table>
+    </table>
 {%endblock%}
